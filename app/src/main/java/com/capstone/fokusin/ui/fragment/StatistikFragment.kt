@@ -16,4 +16,8 @@ class StatistikFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_statistik, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 }

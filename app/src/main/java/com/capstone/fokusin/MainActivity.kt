@@ -30,7 +30,9 @@ class MainActivity : AppCompatActivity() {
                     lodFragment(HomeFragment())
                 }
                 R.id.navCam -> {
-                    lodFragment(RecordFragment())
+                    Intent(this, LoginScreen::class.java).also {
+                        startActivity(it)
+                    }
                 }
                 R.id.navStat -> {
                     lodFragment(StatistikFragment())
