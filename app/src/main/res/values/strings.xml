@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">fokusin</string>
+    <string name="hom">hom</string>
+    <string name="focus">focus</string>
+    <string name="analize">analize</string>
+    <string name="schedule">schedule</string>
+    <string name="profile">profile</string>
+    <string name="btn_start">let\'s focus</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setting">Setting</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="help">Help</string>
+    <string name="logout">Logout</string>
+    <string name="greeting">Hello,</string>
+    <string name="name">John Mblo</string>
+    <string name="card1">Ready tp start your journey?</string>
+    <string name="camera">camera</string>
+    <string name="statistik">statistik</string>
+</resources>

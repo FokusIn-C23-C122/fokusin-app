@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hom">hom</string>
+    <string name="focus">focus</string>
+    <string name="analize">analize</string>
+    <string name="schedule">schedule</string>
+    <string name="profile">profile</string>
+    <string name="btn_start">let\'s focus</string>
+    <string name="setting">Setting</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="help">Help</string>
+    <string name="logout">Logout</string>
+    <string name="greeting">halo</string>
+    <string name="name">John Agus</string>
+    <string name="card1">ready start your journey?</string>
+    <string name="camera">camera</string>
+    <string name="statistik">statistik</string>
+</resources>
