@@ -10,6 +10,7 @@ import com.capstone.fokusin.ui.activity.LoginScreen
 import com.capstone.fokusin.ui.activity.StatisticActivity
 import com.capstone.fokusin.ui.fragment.HomeFragment
 import com.capstone.fokusin.ui.fragment.RecordFragment
+import com.capstone.fokusin.ui.fragment.SettingFragment
 import com.capstone.fokusin.ui.fragment.StatistikFragment
 import com.capstone.fokusin.ui.screen.SettingScreen
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -30,9 +31,10 @@ class MainActivity : AppCompatActivity() {
                     lodFragment(HomeFragment())
                 }
                 R.id.navCam -> {
-                    Intent(this, LoginScreen::class.java).also {
-                        startActivity(it)
-                    }
+//                    Intent(this, LoginScreen::class.java).also {
+//                        startActivity(it)
+//                    }
+                    lodFragment(RecordFragment())
                 }
                 R.id.navStat -> {
                     lodFragment(StatistikFragment())

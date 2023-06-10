@@ -37,8 +37,6 @@ class StatisticActivity : AppCompatActivity() {
             }
         }
 
-        setupChipNavigationBar()
-
         val calendar: Calendar = Calendar.getInstance()
         val currentDate: String = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
 
@@ -131,24 +129,5 @@ class StatisticActivity : AppCompatActivity() {
         // loading chart
         pieChart.invalidate()
     }
-    private fun setupChipNavigationBar() {
-        binding.nav.setItemSelected(R.id.navStat)
-        binding.nav.setOnItemSelectedListener { id ->
-            when (id) {
-                R.id.navHom -> {
-                    Intent(this, MainActivity::class.java).also {
-                        startActivity(it)
-                    }
-                }
-                R.id.navCam -> {
-                    // Logika untuk item navigasi 2
-                }
-                R.id.navStat -> {
-                    Intent(this, StatisticActivity::class.java).also {
-                        startActivity(it)
-                    }
-                }
-            }
-        }
-    }
+
 }
