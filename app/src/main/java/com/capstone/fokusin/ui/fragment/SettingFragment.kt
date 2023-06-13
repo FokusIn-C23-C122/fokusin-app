@@ -1,18 +1,18 @@
 package com.capstone.fokusin.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import com.capstone.fokusin.R
+
 class SettingFragment : Fragment() {
 
     private lateinit var profileImage: ImageView
     private lateinit var textName: TextView
     private lateinit var textEmail: TextView
-    private lateinit var btnEditProfile: Button
     private lateinit var menuList: ListView
 
     override fun onCreateView(
@@ -26,7 +26,7 @@ class SettingFragment : Fragment() {
         profileImage = view.findViewById(R.id.profile_image)
         textName = view.findViewById(R.id.tv_name)
         textEmail = view.findViewById(R.id.tv_email)
-        btnEditProfile = view.findViewById(R.id.btn_edit_profile)
+//        btnEditProfile = view.findViewById(R.id.btn_edit_profile)
         menuList = view.findViewById(R.id.menu_list)
 
         // Mengatur data profil pengguna
@@ -35,15 +35,8 @@ class SettingFragment : Fragment() {
         textName.text = user.name
         textEmail.text = user.email
 
-        // Mengatur aksi tombol edit profil
-        btnEditProfile.setOnClickListener {
-            // Tambahkan kode untuk membuka layar edit profil
-            // Misalnya: val intent = Intent(requireContext(), EditProfileActivity::class.java)
-            // startActivity(intent)
-        }
-
         // Mengatur daftar menu
-        val menuItems = arrayOf("Nigh Mode","Bantuan", "Logout")
+        val menuItems = arrayOf("Nigh Mode", "Bantuan", "Logout")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, menuItems)
         menuList.adapter = adapter
         menuList.setOnItemClickListener { _, _, position, _ ->

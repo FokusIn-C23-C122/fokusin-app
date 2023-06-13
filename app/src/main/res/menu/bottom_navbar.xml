@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cnb_unselectedColor="#666666">
+    app:cnb_unselectedColor="#E6DBDB">
     <item
         android:id="@+id/navHom"
         android:enabled="true"
-        android:icon="@drawable/home_active"
+        android:icon="@drawable/home_ic"
         android:title="@string/hom"
-        app:cnb_iconColor="@color/white"/>
+        app:cnb_iconColor="@color/plt_brown"/>
     <item
         android:id="@+id/navCam"
-        android:icon="@drawable/ic_cam"
+        android:icon="@drawable/camera"
         android:title="@string/camera"
-        app:cnb_iconColor="@color/white"/>
+        app:cnb_iconColor="@color/plt_brown"/>
     <item
         android:id="@+id/navStat"
-        android:icon="@drawable/ic_sta"
+        android:icon="@drawable/statist"
         android:title="@string/statistik"
-        app:cnb_iconColor="@color/white"/>
+        app:cnb_iconColor="@color/plt_brown"/>
 </menu>

@@ -41,13 +41,6 @@
             android:text="asep@abc.com"
             android:textSize="16sp" />
 
-        <!-- Tombol edit profil -->
-        <Button
-            android:id="@+id/btn_edit_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="edit" />
 
     </androidx.cardview.widget.CardView>
 
@@ -57,6 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="0.5dp" />
 
 </LinearLayout>

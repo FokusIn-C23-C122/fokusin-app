@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ui.fragment.HomeFragment">
 
     <LinearLayout
@@ -47,6 +48,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/setting"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="38dp"
@@ -55,9 +57,11 @@
     </LinearLayout>
     <!-- batas 1   -->
     <LinearLayout
+        android:layout_marginTop="16dp"
+        android:paddingTop="15dp"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -93,23 +97,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="23dp"
                     android:layout_marginTop="5dp"
-                    android:text="John Mblo"
+                    android:text="John Doe"
                     android:textColor="@color/plt_brown"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-                <Button
-                    android:layout_width="0dp"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/startButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="23dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/plt_brown"
+                    android:layout_marginBottom="11dp"
+                    android:drawableEnd="@drawable/next"
+                    android:backgroundTint="@color/plt_brown"
                     android:text="Start"
-                    android:textColor="@color/white"
+                    app:cornerRadius="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"></Button>
+                    app:layout_constraintStart_toStartOf="parent" />
+
 
                 <ImageView
                     android:layout_width="155dp"
@@ -125,8 +132,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="23dp"
             android:gravity="center"
             android:orientation="horizontal"
             tools:ignore="RtlSymmetry">
@@ -134,6 +141,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="165dp"
                 android:layout_height="150dp"
+                android:paddingBottom="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
@@ -195,7 +203,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11.7 Hours"
+                        android:text="3.5 Hours"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -203,7 +211,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total Hours Focused"
+                        android:text="Total Hours Distracted"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:textStyle="normal" />
@@ -243,21 +251,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="23dp"
                     android:layout_marginTop="5dp"
-                    android:text="John Mblo"
+                    android:text="John Doe"
                     android:textColor="@color/plt_brown"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-                <Button
-                    android:layout_width="0dp"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_next"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="23dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/plt_brown"
-                    android:text="Start"
-                    android:textColor="@color/white"
+                    android:layout_marginBottom="11dp"
+                    android:drawableEnd="@drawable/next"
+                    android:backgroundTint="@color/plt_brown"
+                    android:text="next"
+                    app:cornerRadius="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
