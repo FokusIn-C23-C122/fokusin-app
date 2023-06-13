@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hom">hom</string>
+    <string name="hom">home</string>
     <string name="focus">focus</string>
     <string name="analize">analize</string>
     <string name="schedule">schedule</string>

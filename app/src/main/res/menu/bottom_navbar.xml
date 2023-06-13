@@ -7,15 +7,15 @@
         android:enabled="true"
         android:icon="@drawable/home_ic"
         android:title="@string/hom"
-        app:cnb_iconColor="@color/plt_brown"/>
+        app:cnb_iconColor="@color/home"/>
     <item
         android:id="@+id/navCam"
         android:icon="@drawable/camera"
         android:title="@string/camera"
-        app:cnb_iconColor="@color/plt_brown"/>
+        app:cnb_iconColor="@color/home"/>
     <item
         android:id="@+id/navStat"
         android:icon="@drawable/statist"
         android:title="@string/statistik"
-        app:cnb_iconColor="@color/plt_brown"/>
+        app:cnb_iconColor="@color/home"/>
 </menu>

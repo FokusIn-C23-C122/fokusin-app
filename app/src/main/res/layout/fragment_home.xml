@@ -113,7 +113,7 @@
                     android:drawableEnd="@drawable/next"
                     android:backgroundTint="@color/plt_brown"
                     android:text="Start"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="9dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -267,7 +267,7 @@
                     android:drawableEnd="@drawable/next"
                     android:backgroundTint="@color/plt_brown"
                     android:text="next"
-                    app:cornerRadius="15dp"
+                    app:cornerRadius="9dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
