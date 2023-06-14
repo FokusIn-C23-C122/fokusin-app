@@ -15,4 +15,5 @@
     <color name="plt_pink2">#F5DED6</color>
     <color name="plt_brown">#360F00</color>
     <color name="plt_yelo">#F1E3A8</color>
+    <color name="menu_text_color">#000000</color>
 </resources>

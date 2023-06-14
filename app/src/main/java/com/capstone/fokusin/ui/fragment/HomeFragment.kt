@@ -21,12 +21,16 @@ class HomeFragment : Fragment() {
 
         val iv: ImageView = view.findViewById(R.id.setting)
         val ibtn: Button = view.findViewById(R.id.startButton)
+        val nbtn: Button = view.findViewById(R.id.btn_next)
         iv.setOnClickListener {
             lodFragment(SettingFragment())
         }
         ibtn.setOnClickListener {
             val intent = Intent(activity, LoginScreen::class.java)
             startActivity(intent)
+        }
+        nbtn.setOnClickListener {
+            lodFragment(StatistikFragment())
         }
         return view
     }
