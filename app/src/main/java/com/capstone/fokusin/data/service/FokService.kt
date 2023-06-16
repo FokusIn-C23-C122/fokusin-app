@@ -1,32 +1,31 @@
 package com.capstone.fokusin.data.service
 
 import android.provider.ContactsContract.CommonDataKinds.Email
-import com.capstone.fokusin.data.response.FokPredicResponse
-import com.capstone.fokusin.data.response.LoginResponse
-import com.capstone.fokusin.data.response.RegisterResponse
+import com.capstone.fokusin.data.response.*
 import okhttp3.MultipartBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface FokService {
 
     @FormUrlEncoded
-    @POST("auth/login")
+    @POST("api/user/login/")
     suspend fun login(
         @Field("username") username: String,
         @Field("password") password: String
-    ): Call<LoginResponse>
+    ): Response<LoginRess>
 
     @FormUrlEncoded
-    @POST("auth/register")
+    @POST("api/user/register/")
     suspend fun register(
-        @Field("username") username: String,
         @Field("email") email: String,
+        @Field("username") username: String,
         @Field("password") password: String
     ): Call<RegisterResponse>
 
     @Multipart
-    @POST("predictions")
+    @POST("api/analysis")
     fun upload(
         @Header("Authorization") auth: String,
         @Part file: MultipartBody.Part

@@ -39,7 +39,7 @@ class CustomListAdapter(private val menuItems: Array<String>) :
             // Set icon based on position or any other logic
             // For example, you can set different icons for different menu items
             when (adapterPosition) {
-                0 -> iconImageView.setImageResource(R.drawable.help_ic)
+                0 -> iconImageView.setImageResource(R.drawable.about)
                 1 -> iconImageView.setImageResource(R.drawable.user_manual)
                 2 -> iconImageView.setImageResource(R.drawable.logout_ic)
             }

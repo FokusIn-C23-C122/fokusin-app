@@ -40,15 +40,32 @@
         android:orientation="vertical"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <SurfaceView
-            android:id="@+id/preview"
-            android:layout_marginBottom="45dp"
-            android:layout_width="300dp"
-            android:layout_height="300dp" />
+        android:layout_height="wrap_content">
+
+        <androidx.camera.view.PreviewView
+            android:layout_marginTop="42dp"
+            android:id="@+id/viewCams"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="32dp"
+            android:background="@color/plt_pink"
+            app:hintTextColor="@color/plt_brown"
+            android:hint="description"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:backgroundTint="@android:color/transparent"
+                android:textColor="@color/plt_brown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_start_recording"
+            android:id="@+id/btn_camera"
             android:layout_width="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_height="wrap_content"

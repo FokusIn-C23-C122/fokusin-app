@@ -103,7 +103,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                app:cardBackgroundColor="@color/plt_yelo"
+                app:cardBackgroundColor="@color/plt_pink"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="7dp">
 
@@ -116,12 +116,12 @@
                     <ImageView
                         android:layout_width="75dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_head" />
+                        android:src="@drawable/head2" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11.7 Hours"
+                        android:text="4.5 Hours"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -143,7 +143,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                app:cardBackgroundColor="@color/plt_yelo"
+                app:cardBackgroundColor="@color/plt_pink"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="7dp">
 
@@ -156,12 +156,12 @@
                     <ImageView
                         android:layout_width="75dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_ban" />
+                        android:src="@drawable/distrak" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11.7 Hours"
+                        android:text="0.5 Hours"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />

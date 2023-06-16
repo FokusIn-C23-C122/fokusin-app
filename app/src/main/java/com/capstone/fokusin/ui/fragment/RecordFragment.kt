@@ -1,159 +1,174 @@
 package com.capstone.fokusin.ui.fragment
 
-//import android.graphics.Camera
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
-import android.view.*
-import android.widget.Button
-import androidx.camera.core.*
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.capstone.fokusin.R
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import android.Manifest
+import android.os.Handler
+import androidx.camera.core.ImageCaptureException
+import com.capstone.fokusin.databinding.FragmentRecordBinding
+import java.io.File
 
-
-class RecordFragment : Fragment(), SurfaceHolder.Callback {
-
+class RecordFragment : Fragment() {
     private lateinit var cameraExecutor: ExecutorService
-    private lateinit var camera: Camera
-    private lateinit var imageCapture: ImageCapture
-    private lateinit var preview: SurfaceView
-    private lateinit var btnStartRecording: Button
+    private var imageCapture: ImageCapture? = null
+    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+    private var _binding: FragmentRecordBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var handler: Handler
+    private var isCapturingPhotos: Boolean = false
+    private lateinit var captureRunnable: Runnable
 
-    private var isRecording = false
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        cameraExecutor = Executors.newSingleThreadExecutor()
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_record, container, false)
+    ): View {
+        _binding = FragmentRecordBinding.inflate(inflater, container, false)
 
-        // Inisialisasi komponen UI
-        preview = view.findViewById(R.id.preview)
-        btnStartRecording = view.findViewById(R.id.btn_start_recording)
+        val cameraPermission = Manifest.permission.CAMERA
 
-        // Mengatur aksi tombol Start Recording
-        btnStartRecording.setOnClickListener {
-            if (isRecording) {
-                stopRecording()
-            } else {
-                startRecording()
-            }
+        val requestCode = 100 // Anda dapat menggunakan kode permintaan yang sesuai
+
+        // Memeriksa apakah izin kamera sudah pernah diberikan sebelumnya
+        if (ContextCompat.checkSelfPermission(requireContext(), cameraPermission) != PackageManager.PERMISSION_GRANTED) {
+            // Jika izin belum diberikan, meminta izin secara runtime
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(cameraPermission), requestCode)
+        } else {
+            // Izin kamera sudah diberikan, melanjutkan dengan pengaturan kamera
+            startCamera()
+
         }
 
-        // Inisialisasi executor untuk penggunaan kamera
-        cameraExecutor = Executors.newSingleThreadExecutor()
 
-        return view
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        cameraExecutor.shutdown()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        startCamera()
+        binding.btnCamera.setOnClickListener {
+            startPhotoCaptureSchedule()
+            if (isCapturingPhotos) {
+                stopPhotoCaptureSchedule()
+                binding.btnCamera.text = "Stop Session"
+            } else {
+                startPhotoCaptureSchedule()
+                binding.btnCamera.text = "Start Session"
+            }
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        preview.holder.addCallback(this)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        preview.holder.removeCallback(this)
-    }
-
-    override fun surfaceCreated(holder: SurfaceHolder) {
-        startCamera(holder)
-    }
-
-    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-        // Ignored, the Camera does all the work for us
-    }
-
-    override fun surfaceDestroyed(holder: SurfaceHolder) {
-//        camera.close()
-    }
-
-    private fun startCamera(holder: SurfaceHolder) {
+    private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-
-            val preview = Preview.Builder().build().also { builder ->
-
+            val preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(binding.viewCams.surfaceProvider)
             }
 
-            val imageCapture = ImageCapture.Builder().build()
-
-            val cameraSelector = CameraSelector.Builder()
-                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-                .build()
+            imageCapture = ImageCapture.Builder().build()
 
             try {
                 cameraProvider.unbindAll()
-                camera = cameraProvider.bindToLifecycle(viewLifecycleOwner, cameraSelector, preview, imageCapture)
+                cameraProvider.bindToLifecycle(
+                    this,
+                    cameraSelector,
+                    preview,
+                    imageCapture
+                )
             } catch (exc: Exception) {
-                Log.e(TAG, "Error starting camera: ${exc.message}")
+                Toast.makeText(
+                    requireContext(),
+                    "Gagal memunculkan kamera.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
+    private fun startPhotoCaptureSchedule() {
+        if (isCapturingPhotos) {
+            return
+        }
+//        binding.btnCamera.text = "stop bang"
+        isCapturingPhotos = true
 
-    private fun startRecording() {
-        isRecording = true
-        btnStartRecording.text = "Stop Recording"
-        capturePhotoPeriodically()
+        captureRunnable = Runnable {
+            // Capture photo
+            capturePhoto()
+
+            // Schedule the next capture after 1 minute
+            handler.postDelayed(captureRunnable, 60000)
+        }
+
+        handler = Handler()
+        handler.postDelayed(captureRunnable, 60000) // Initial capture after 1 minute
     }
 
-    private fun stopRecording() {
-        isRecording = false
-        btnStartRecording.text = "Start Recording"
+    private fun stopPhotoCaptureSchedule() {
+        if (!isCapturingPhotos) {
+            return
+        }
+//        binding.btnCamera.text = "lagi bang"
+        isCapturingPhotos = false
+        handler.removeCallbacks(captureRunnable)
     }
 
-    private fun capturePhotoPeriodically() {
-        cameraExecutor.execute {
-            while (isRecording) {
-                try {
-                    val imageCapture = imageCapture ?: return@execute
-                    val outputFile = createOutputFile()
-                    val outputOptions = ImageCapture.OutputFileOptions.Builder(outputFile).build()
+    private fun capturePhoto() {
+        val imageCapture = imageCapture ?: return
 
-                    imageCapture.takePicture(outputOptions, cameraExecutor, object : ImageCapture.OnImageSavedCallback {
-                        override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                            // Foto berhasil disimpan, lakukan aksi yang diinginkan
-                            Log.d(TAG, "Photo saved: ${outputFile.absolutePath}")
-                        }
+        val outputDirectory = File(requireContext().filesDir, "photos")
+        if (!outputDirectory.exists()) {
+            outputDirectory.mkdirs()
+        }
 
-                        override fun onError(exc: ImageCaptureException) {
-                            Log.e(TAG, "Error capturing photo: ${exc.message}")
-                        }
-                    })
+        val outputFile = File(outputDirectory, "photo.jpg")
 
-                    Thread.sleep(60000) // Tunggu 1 menit
-                } catch (e: InterruptedException) {
-                    Log.e(TAG, "Capture photo interrupted: ${e.message}")
-                    stopRecording()
+        val outputFileOptions = ImageCapture.OutputFileOptions.Builder(outputFile)
+            .build()
+
+        imageCapture.takePicture(
+            outputFileOptions,
+            cameraExecutor,
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    // Photo captured and saved successfully
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    // Error occurred while capturing or saving the photo
                 }
             }
-        }
+        )
     }
 
-    private fun createOutputFile(): File {
-        val outputDir = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val fileName = "IMG_${timeStamp}.jpg"
-        return File(outputDir, fileName)
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
-    companion object {
-        private const val TAG = "CameraFragment"
+    override fun onDestroy() {
+        super.onDestroy()
+        cameraExecutor.shutdown()
     }
 }
 

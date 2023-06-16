@@ -5,17 +5,17 @@
     <item
         android:id="@+id/navHom"
         android:enabled="true"
-        android:icon="@drawable/home_ic"
+        android:icon="@drawable/hom_inactive"
         android:title="@string/hom"
-        app:cnb_iconColor="@color/home"/>
+        app:cnb_iconColor="@color/plt_brown"/>
     <item
         android:id="@+id/navCam"
-        android:icon="@drawable/camera"
+        android:icon="@drawable/kameraa"
         android:title="@string/camera"
-        app:cnb_iconColor="@color/home"/>
+        app:cnb_iconColor="@color/plt_brown"/>
     <item
         android:id="@+id/navStat"
         android:icon="@drawable/statist"
         android:title="@string/statistik"
-        app:cnb_iconColor="@color/home"/>
+        app:cnb_iconColor="@color/plt_brown"/>
 </menu>

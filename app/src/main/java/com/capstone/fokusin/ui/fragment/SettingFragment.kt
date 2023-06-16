@@ -43,7 +43,7 @@ class SettingFragment : Fragment(), CustomListAdapter.ItemClickListener {
         textEmail.text = user.email
 
         // Mengatur daftar menu
-        val menuItems = arrayOf("Nigh Mode", "Bantuan", "Logout")
+        val menuItems = arrayOf("About Us", "User Manual", "Logout")
 //        val adapter = ArrayAdapter(requireContext(), R.layout.list_item_menu, menuItems)
         val adapter = CustomListAdapter(menuItems)
         val menuRecyclerView = view.findViewById<RecyclerView>(R.id.menuRecyclerView)

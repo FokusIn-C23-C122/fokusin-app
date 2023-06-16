@@ -20,26 +20,12 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler().postDelayed({
-//            if(onBoardingFinished()){
-//                findNavController().navigate(R.id.splashScreen to R.id.homeeActivity)
-//            }else{
-//                findNavController().navigate(R.id.splashScreen to R.id.viewPagerFragment)
-//            }
-            if (onBoardingFinished()) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
 
-
-                val navController = Navigation.findNavController(this, R.id.splashScreen)
-                navController.navigate(R.id.viewPagerFragment)
-            }
-            else{
-                print("cobalagi")
-            }
         }, DELAY)
     }
 
-    private fun onBoardingFinished(): Boolean{
-        val sharePref = getSharedPreferences("onBoard", Context.MODE_PRIVATE)
 
-        return sharePref.getBoolean("finished", false)
-    }
 }

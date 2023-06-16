@@ -31,4 +31,14 @@
         android:name="com.capstone.fokusin.ui.activity.HomeeActivity"
         android:label="activity_homee"
         tools:layout="@layout/activity_homee" />
+    <activity
+        android:id="@+id/loginScreen"
+        android:name="com.capstone.fokusin.ui.activity.LoginScreen"
+        android:label="activity_login_screen"
+        tools:layout="@layout/activity_login_screen" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.capstone.fokusin.ui.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>
