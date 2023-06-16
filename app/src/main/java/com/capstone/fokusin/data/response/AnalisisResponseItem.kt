@@ -1,4 +1,4 @@
-package com.capstone.fokusin.data.service
+package com.capstone.fokusin.data.response
 
 data class AnalisisResponseItem(
     val date: String,

@@ -18,7 +18,7 @@ class FokConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://fokusin-model-ejh5i5qlpq-et.a.run.app/")
+                .baseUrl("https://fokusin-model-ejh5i5qlpq-et.a.run.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

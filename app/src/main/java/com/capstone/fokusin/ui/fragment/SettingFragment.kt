@@ -11,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.fokusin.R
+import com.capstone.fokusin.ui.activity.AboutUs
 import com.capstone.fokusin.ui.activity.LoginScreen
+import com.capstone.fokusin.ui.activity.UserGuideScreen
 import com.capstone.fokusin.ui.adapter.CustomListAdapter
 
 class SettingFragment : Fragment(), CustomListAdapter.ItemClickListener {
@@ -68,11 +70,14 @@ class SettingFragment : Fragment(), CustomListAdapter.ItemClickListener {
             0 -> {
                 // Aksi untuk menu item 1
 //                findNavController().navigate(R.id.action_menu1)
-                lodFragment(StatistikFragment())
+                val intent = Intent(activity, AboutUs::class.java)
+                startActivity(intent)
             }
             1 -> {
                 // Aksi untuk menu item 2
 //                findNavController().navigate(R.id.action_menu2)
+                val intent = Intent(activity, UserGuideScreen::class.java)
+                startActivity(intent)
             }
             2 -> {
                 // Aksi untuk menu item 3

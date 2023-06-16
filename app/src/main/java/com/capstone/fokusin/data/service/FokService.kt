@@ -10,14 +10,14 @@ import retrofit2.http.*
 interface FokService {
 
     @FormUrlEncoded
-    @POST("api/user/login/")
+    @POST("user/login/")
     suspend fun login(
         @Field("username") username: String,
         @Field("password") password: String
     ): Response<LoginRess>
 
     @FormUrlEncoded
-    @POST("api/user/register/")
+    @POST("user/register/")
     suspend fun register(
         @Field("email") email: String,
         @Field("username") username: String,
@@ -25,19 +25,19 @@ interface FokService {
     ): Call<RegisterResponse>
 
     @Multipart
-    @POST("api/analysis")
+    @POST("analysis/")
     fun upload(
         @Header("Authorization") auth: String,
         @Part file: MultipartBody.Part
-    ): Call<FokPredicResponse>
+    ): Call<AnalisisResponse>
 
-    @FormUrlEncoded
-    @PUT("users/{id}")
-    fun getUser(
-        @Header("Authorization") auth: String,
-        @Field("username") username: String?,
-        @Field("email") email: String?,
-        @Field("password") pass: String?,
-        @Path("id") id: String
-    ): Call<LoginResponse>
+//    @FormUrlEncoded
+//    @PUT("users/{id}")
+//    fun getUser(
+//        @Header("Authorization") auth: String,
+//        @Field("username") username: String?,
+//        @Field("email") email: String?,
+//        @Field("password") pass: String?,
+//        @Path("id") id: String
+//    ): Call<LoginResponse>
 }

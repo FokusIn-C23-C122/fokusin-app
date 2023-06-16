@@ -1,6 +1,5 @@
 package com.capstone.fokusin.data.response
 
-import com.capstone.fokusin.data.service.AnalisisResponse
 import com.google.gson.annotations.SerializedName
 
 data class FokPredicResponse(
