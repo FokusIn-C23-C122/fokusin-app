@@ -73,6 +73,15 @@
             android:drawableLeft="@drawable/record"
             android:text="Start Session"
             app:cornerRadius="9dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_demo"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/plt_brown"
+            android:drawableLeft="@drawable/ic_demo"
+            android:text="Demo"
+            app:cornerRadius="9dp" />
     </LinearLayout>
     <!-- Pratinjau Kamera -->
 

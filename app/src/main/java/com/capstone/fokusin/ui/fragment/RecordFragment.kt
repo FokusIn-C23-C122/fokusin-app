@@ -17,7 +17,9 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.Manifest
 import android.os.Handler
+import android.widget.Button
 import androidx.camera.core.ImageCaptureException
+import com.capstone.fokusin.R
 import com.capstone.fokusin.databinding.FragmentRecordBinding
 import java.io.File
 
@@ -41,7 +43,10 @@ class RecordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecordBinding.inflate(inflater, container, false)
-
+        val btn: Button = binding.btnDemo
+        btn.setOnClickListener {
+            lodFragment(DemoFragment())
+        }
         val cameraPermission = Manifest.permission.CAMERA
 
         val requestCode = 100 // Anda dapat menggunakan kode permintaan yang sesuai
@@ -59,7 +64,11 @@ class RecordFragment : Fragment() {
 
         return binding.root
     }
-
+    private fun lodFragment(fragment: Fragment) {
+        val trans = parentFragmentManager.beginTransaction()
+        trans.replace(R.id.konten, fragment)
+        trans.commit()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startCamera()
